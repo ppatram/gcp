@@ -1,0 +1,8 @@
+It's not possible to create instances with nested virtualization in the console.
+
+The following will create a vm with the VT-x attribute. I could not find anywhere
+in google documentation that mentions that you must use "Intel Haswell" or newer.
+I tested with the "n1-standard-8" machine type. Not sure others will work.
+ 
+From cloudshell:
+gcloud compute instances create "VMNAME" --zone "ZONE" --machine-type "n1-standard-8"  --min-cpu-platform "Intel Haswell"  --boot-disk-size "DISK-SIZE" --boot-disk-type "pd-ssd" --boot-disk-device-name "DISK-NAME" --enable-nested-virtualization
