@@ -21,7 +21,7 @@ read RESCUEVM
 gcloud compute instances stop ${FAILEDVM} --zone ${REGION}
 
 gcloud compute instances detach-disk ${FAILEDVM} --zone ${REGION} --disk=${BADDISK}
-gcloud compute instances attach-disk example-${FAILEDVM} --zone ${REGION} --disk ${BADDISK} 
+gcloud compute instances attach-disk example-${RESCUEVM} --zone ${REGION} --disk ${BADDISK} 
 
 echo
 echo
