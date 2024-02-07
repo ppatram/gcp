@@ -22,9 +22,9 @@ for line in $(gcloud compute disks list --format json |  jq '.[] | "\(.name) \(.
         type=$(echo $line | cut -d " "  -f4 | sed 's|/|\n|g' | tail -1)
 
         if [ "$user" == "null" ]; then
-                echo "echo 'y' | gcloud compute disks delete $disk --zone $zone --project $project# type:$type, size:$size DELETE"
+                echo "echo 'y' | gcloud compute disks delete $disk --zone $zone --project $project # type:$type, size:$size DELETE"
         else
-                echo "KEEPING: project:$project; disk:$disk; user:$user; zone:$zone; type:$type; size:$size"
+                echo "# KEEPING: project:$project; disk:$disk; user:$user; zone:$zone; type:$type; size:$size"
         fi
 done
 unset IFS
