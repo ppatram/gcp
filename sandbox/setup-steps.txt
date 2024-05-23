@@ -19,19 +19,27 @@ CREATE TABLE IF NOT EXISTS gcp_usage(
 	login varchar(20),
 	accesscode varchar(12)
 );
+insert into gcp_usage values('AYAN', 'BHADURI', 'abhaduri', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values( 'MAYANK'  'MITTAL', 'mmittal', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('N',  'PRAKASH', 'nprakash', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('MOHAMMAD', 'KHAJA', 'mkhaja' lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('RAMAKRISHNA', 'YADAV', 'rhadav', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('HARICHARAN', 'REDDY', 'hreddy', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('AKHIL', 'NAIDU', 'anaidu', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('KRISHNAJIT',  'KAR', 'kkar', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('SIVA', 'PRASAD', 'sprasad', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('MARLON', 'THOMAS', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
 
-#) ENGINE=storage_engine;
 
-Create another table named logins with the following columns, usting a database generated ID. Create a primary key relationship by loginName
-loginName, loginDateTime, logoutDateTime, loginNumber, status, serverIP
+#Create another table named logins with the following columns, usting a database generated ID. Create a primary key relationship by loginName
+#loginName, loginDateTime, logoutDateTime, loginNumber, status, serverIP
 
-These are the users. When they have more than two names put the additional names in the firstName column.
 CREATE TABLE IF NOT EXISTS logins(
 	id MEDIUMINT NOT NULL AUTO_INCREMENT,
 	login varchar(20),
 	logintime timestamp not null default current_timestamp,
 	logouttime timestamp not null default current_timestamp,
-	status ENUM('notprov', 'stopped', 'running'),
+	status ENUM('notprov', 'stopped', 'running') default 'notprov',
 	serverip varchar(20)
 );
 
@@ -39,21 +47,9 @@ CREATE TABLE IF NOT EXISTS logins(
 
 #insert into foo values (current_Date()),(now());
 
-select lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0);
 
 
 
-
-AYAN  BHADURI  (r27834)
-MAYANK  MITTAL  (r92166)
-N  PRAKASH  (y86872)
-MOHAMMAD  KHAJA  (x40445)
-PINNIBOYINA RAMAKRISHNA  YADAV  (w01856)
-P HARICHARAN  REDDY  (p42341)
-JOLAPURAM AKHIL  NAIDU  (x74786)
-KRISHNAJIT  KAR  (y55676)
-J SIVA  PRASAD  (r19367)
-MARLON THOMAS (q83059)
 
 Configure the PHP module in Apache. You can use the default virtual host. Lookup the apache config to see where its document root is located.
 
