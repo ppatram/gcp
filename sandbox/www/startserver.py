@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import mysql.connector
+import subprocess
+
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -15,9 +17,10 @@ mycursor = mydb.cursor()
 mycursor.execute("select * from persons;")
 
 
-#(1, 'AYAN', 'BHADURI', 'abhaduri', 'GEW3963B25E0', 'notprov')
+## id | firstname   | lastname | login    | accesscode   | zone        | serverip
 for x in mycursor:
     login = x[3]
+    zone = x[5]
 
     try:
         statfile = "/var/lib/docker/volumes/docker-lamp_php/_data/tmp/%s"%login
@@ -26,9 +29,9 @@ for x in mycursor:
         fname.close()
         parts = line.split(',')
         status = parts[5]
-        print("Login: %s Stat: %s"%(login,status))
+        print("Login: %s Region: %s"%(login,zone))
+        subprocess.run(["/var/lib/docker/volumes/docker-lamp_php/_data/gcp.sh", login, zone])
     except:
-       print("User %s is not present"%login)
        continue
 
 

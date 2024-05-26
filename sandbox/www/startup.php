@@ -27,9 +27,9 @@ if ($result->num_rows > 0) {
     $code = $row["accesscode"];
     $region = $row["region"];
     $serverip = $row["serverip"];
-    echo "OK, $fn $ln"; ?>
-	<br>I'm setting up your server; wait a few minutes then put your code into this page:
-	   <br> <a href='http://35.190.184.78/status.php'> GET MY IP</a> <?
+    echo "<H1>OK, $fn $ln. Your login name is <br>$login<br></H1>"; ?>
+	<br><h1>I'm setting up your server.<br>wait a few minutes then put your code into this page:
+	   <br> <a href='http://35.190.184.78/status.php'> GET MY IP</a></h1> <?
   }
 } else {
   echo "0 results";
