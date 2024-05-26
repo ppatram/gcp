@@ -31,9 +31,9 @@ cat << EOF > /var/lib/logout.sh
 
 cat /dev/null > /var/lib/logout.log
 exec > /var/lib/logout.log 2>&1
-tmout=\$1
-shout=\$2
-sleep=\$3
+tmout=$1
+shout=$2
+sleep=$3
 tomins=0
 totmins=0
 

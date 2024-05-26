@@ -11,7 +11,7 @@ datfile="/var/lib/docker/volumes/docker-lamp_php/_data/tmp/${user}"
 tmpfile=$(mktemp /tmp/startup.XXXXX)
 cp /var/lib/docker/volumes/docker-lamp_php/_data/custom-startup.sh $tmpfile
 sed -i "s/__person__/$user/" $tmpfile
-
+exit
 gcloud compute addresses create ${ipn} --zone $zone --ip-version IPV4
 thisip=$(gcloud compute addresses list | grep -E "^$ipn" | awk '{print $2}')
 gcloud compute instances create "${vmn}" \
