@@ -51,6 +51,7 @@ while(true); do
 	echo UTMOUT:\$tomins/TOT:\$totmins
 	if [ \$tomins -gt \$tmout ]; then
 		echo "Shutting down out for user timeout \$tmout at \$(date)."
+		/sbin/shutdown -h now
 	fi	
 	if [ \$totmins -gt \$shout ]; then
 		# shutdown the server
