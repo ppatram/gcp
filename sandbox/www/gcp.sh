@@ -4,9 +4,9 @@ user=$1
 exec > /tmp/$user.txt 2>&1
 zone=$2
 count=1
-vmn=${user}-vm${count}
-ipn=${user}-ip${count}
-diskn=${user}-disk${count}
+vmn=${user}-vm-${count}
+ipn=${user}-ip-${count}
+diskn=${user}-disk-${count}
 datfile="/var/lib/docker/volumes/docker-lamp_php/_data/tmp/${user}"
 tmpfile=$(mktemp /tmp/startup.XXXXX)
 cp /var/lib/docker/volumes/docker-lamp_php/_data/custom-startup.sh $tmpfile
