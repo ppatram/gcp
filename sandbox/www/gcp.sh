@@ -19,7 +19,7 @@ gcloud compute instances create "${vmn}" \
 		--boot-disk-size "40G" --boot-disk-type "pd-ssd" \
 		--boot-disk-device-name "${diskn}" \
 		--metadata-from-file=startup-script=$tmpfile
-
+exit
 gcloud compute instances start "${vmn}" --zone $zone
 thisip=$(gcloud compute instances describe $vmn --zone $zone |grep -i natip | cut -d: -f2 | tr -d ' ')
 
