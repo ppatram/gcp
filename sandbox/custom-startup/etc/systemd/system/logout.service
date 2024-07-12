@@ -1,0 +1,13 @@
+[Unit]
+Description=Logout Server
+After=network.target auditd.service
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+ExecStart=/var/lib/logout.sh
+
+[Install]
+WantedBy=multi-user.target
+Alias=lamp.service
+

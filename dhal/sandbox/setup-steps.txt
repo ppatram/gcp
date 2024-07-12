@@ -1,0 +1,61 @@
+#Generate an RSA key and send me the id_rsa.pub file. I'll send you instructions on how to access the server.
+#To generate the key, open powershell and type:
+#ssh-keygen -t rsa
+#The id_rsa.pub file will be in a folder named .ssh (note the starting dot).
+#
+#Install Apache/Mysql/PHP
+
+#create a database named gcp_usage
+#Create a table named user_specs with the following columns, using a database generated ID. Generate a random lowercase numeric string of 10 chars for the accessCode.
+#
+#ID. Generate a random lowercase numeric string of 10 chars for the accessCode.
+#id FirstName, LastName, loginName, accessCode
+
+create database if not exists gcp_usage;
+CREATE TABLE IF NOT EXISTS gcp_usage(
+	id MEDIUMINT NOT NULL AUTO_INCREMENT,
+	firstname varchar(20),
+	lastname varchar(20),
+	login varchar(20),
+	accesscode varchar(12)
+);
+insert into gcp_usage values('AYAN', 'BHADURI', 'abhaduri', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values( 'MAYANK'  'MITTAL', 'mmittal', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('N',  'PRAKASH', 'nprakash', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('MOHAMMAD', 'KHAJA', 'mkhaja' lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('RAMAKRISHNA', 'YADAV', 'rhadav', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('HARICHARAN', 'REDDY', 'hreddy', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('AKHIL', 'NAIDU', 'anaidu', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('KRISHNAJIT',  'KAR', 'kkar', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('SIVA', 'PRASAD', 'sprasad', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+insert into gcp_usage values('MARLON', 'THOMAS', lpad(conv(floor(rand()*pow(36,12)), 10, 36), 12, 0));
+
+
+#Create another table named logins with the following columns, usting a database generated ID. Create a primary key relationship by loginName
+#loginName, loginDateTime, logoutDateTime, loginNumber, status, serverIP
+
+CREATE TABLE IF NOT EXISTS logins(
+	id MEDIUMINT NOT NULL AUTO_INCREMENT,
+	login varchar(20),
+	logintime timestamp not null default current_timestamp,
+	logouttime timestamp not null default current_timestamp,
+	status ENUM('notprov', 'stopped', 'running') default 'notprov',
+	serverip varchar(20)
+);
+
+
+
+#insert into foo values (current_Date()),(now());
+
+
+
+
+
+Configure the PHP module in Apache. You can use the default virtual host. Lookup the apache config to see where its document root is located.
+
+Create a PHP webform named startup.php that says something like "enter your access code to start your server". It will take that code and lookup in the DB. If a match is found, create an entry in the logins table. The logout date/time should be entered as 5 hours after the current system time. Leave the serverIP empty. Set the status to STARTING. Display on the page the loginName and logoutDateTime, informing the user when their server will be powered off. If they try to start the server and the status is "ONLINE" or "STARTING" say something like "your server is currently starting up, wait a few minutes and retry to get the system IP".
+
+If the status is STARTING, show a textbox named "Get My Server IP". It will lookup the last entry in the logins table for that user where the status is ONLINE and return the serverIP value, saying something like "your server is started. Have a fun time learning!". If it is not ONLINE, say something like "your server will be online momentarily. Please check back in a few minutes".
+
+That's it!
+I'll write the polling job and the code to connect to GCP which will create, start or stop the instances as needed and set the status value to ONLINE or OFFLINE as appropriate.
